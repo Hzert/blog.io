@@ -1,0 +1,167 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><title>前端面试题目收集-理论知识篇 - colton`s blog</title><meta name="description" content="一、理论知识1.1、讲讲输入完网址按下回车，到看到网页这个过程中发生了什么a. 域名解析b. 发起TCP的3次握手c. 建立TCP连接后发起http请求d. 服务器端响应http请求，浏览器得到html代码e. 浏览器解析html代码，并请求html代码中的资源f. 浏览器对页面进行渲染呈现给用户参"><link type="text/css" rel="stylesheet" href="/css/pure.css?v=0.0.1"><link type="text/css" rel="stylesheet" href="/css/style.css?v=0.0.1"><script type="text/javascript" src="//cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script></head></html><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">前端面试题目收集-理论知识篇</h1><a id="logo" href="/.">colton`s blog</a></div><div id="nav-menu"><div class="bitcron_nav"><div class="site_nav_wrap"><div class="site_nav"><span class="a_container"><a href="/." class="selected active current">首页</a></span><span class="a_container"><a href="/archives/">归档</a></span><span class="a_container"><a href="/about/">关于</a></span><span class="a_container"><a href="/links/">订阅</a></span></div></div></div></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">前端面试题目收集-理论知识篇</h1><div class="post-meta">2018-03-15<script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" type="text/javascript"></script><span class="meta-space">  |  </span><span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span><span> 浏览</span></span></div><!--文章内容--><div class="post-content"><p>一、理论知识<br>1.1、讲讲输入完网址按下回车，到看到网页这个过程中发生了什么<br>a. 域名解析</p>
+<p>b. 发起TCP的3次握手</p>
+<p>c. 建立TCP连接后发起http请求</p>
+<p>d. 服务器端响应http请求，浏览器得到html代码</p>
+<p>e. 浏览器解析html代码，并请求html代码中的资源</p>
+<p>f. 浏览器对页面进行渲染呈现给用户</p>
+<p>参考《一次完整的HTTP事务是怎样一个过程》</p>
+<p>1.2、谈谈你对前端性能优化的理解<br>a. 请求数量：合并脚本和样式表，CSS Sprites，拆分初始化负载，划分主域</p>
+<p>b. 请求带宽：开启GZip，精简JavaScript，移除重复脚本，图像优化，将icon做成字体</p>
+<p>c. 缓存利用：使用CDN，使用外部JavaScript和CSS，添加Expires头，减少DNS查找，配置ETag，使AjaX可缓存</p>
+<p>d. 页面结构：将样式表放在顶部，将脚本放在底部，尽早刷新文档的输出</p>
+<p>e. 代码校验：避免CSS表达式，避免重定向</p>
+<p>参考《前端工程与性能优化》</p>
+<p>1.3、前端 MV*框架的意义<br>早期前端都是比较简单，基本以页面为工作单元，内容以浏览型为主，也偶尔有简单的表单操作，基本不太需要框架。</p>
+<p>随着 AJAX 的出现，Web2.0的兴起，人们可以在页面上可以做比较复杂的事情了，然后前端框架才真正出现了。</p>
+<p>如果是页面型产品，多数确实不太需要它，因为页面中的 JavaScript代码，处理交互的绝对远远超过处理模型的，但是如果是应用软件类产品，这就太需要了。</p>
+<p>长期做某个行业软件的公司，一般都会沉淀下来一些业务组件，主要体现在数据模型、业务规则和业务流程，这些组件基本都存在于后端，在前端很少有相应的组织。</p>
+<p>从协作关系上讲，很多前端开发团队每个成员的职责不是很清晰，有了前端的 MV框架，这个状况会大有改观。</p>
+<p>之所以感受不到 MV*框架的重要性，是因为Model部分代码较少，View的相对多一些。如果主要在操作View和Controller，那当然 jQuery 这类库比较好用了。</p>
+<p>参考《前端 MV*框架的意义》</p>
+<p>1.4、请简述盒模型<br>IE6盒子模型与W3C盒子模型。</p>
+<p>文档中的每个元素被描绘为矩形盒子。盒子有四个边界：外边距边界margin, 边框边界border, 内边距边界padding与内容边界content。</p>
+<p>CSS3中有个box-sizing属性可以控制盒子的计算方式，</p>
+<p>content-box：padding和border不被包含在定义的width和height之内。对象的实际宽度等于设置的width值和border、padding之和。（W3C盒子模型）</p>
+<p>border-box：padding和border被包含在定义的width和height之内。对象的实际宽度就等于设置的width值。（IE6盒子模型）</p>
+<p>参考《盒模型》</p>
+<p>1.5、请你谈谈Cookie的弊端<br>a. 每个特定的域名下最多生成的cookie个数有限制</p>
+<p>b. IE和Opera 会清理近期最少使用的cookie，Firefox会随机清理cookie</p>
+<p>c. cookie的最大大约为4096字节，为了兼容性，一般不能超过4095字节</p>
+<p>d. 安全性问题。如果cookie被人拦截了，那人就可以取得所有的session信息。 </p>
+<p>1.6、浏览器本地存储<br>在HTML5中提供了sessionStorage和localStorage。</p>
+<p>sessionStorage用于本地存储一个会话（session）中的数据，这些数据只有在同一个会话中的页面才能访问并且当会话结束后数据也随之销毁，是会话级别的存储。</p>
+<p>localStorage用于持久化的本地存储，除非主动删除数据，否则数据是永远不会过期的。</p>
+<p>1.7、web storage和cookie的区别<br>a. Cookie的大小是受限的</p>
+<p>b. 每次你请求一个新的页面的时候Cookie都会被发送过去，这样无形中浪费了带宽</p>
+<p>c. cookie还需要指定作用域，不可以跨域调用</p>
+<p>d. Web Storage拥有setItem,getItem等方法，cookie需要前端开发者自己封装setCookie，getCookie</p>
+<p>e. Cookie的作用是与服务器进行交互，作为HTTP规范的一部分而存在 ，而Web Storage仅仅是为了在本地“存储”数据而生</p>
+<p>f. IE7、IE6中的UserData通过简单的代码封装可以统一到所有的浏览器都支持web storage</p>
+<p>1.8、对BFC规范的理解<br>BFC全称是Block Formatting Context，即块格式化上下文。它是CSS2.1规范定义的，关于CSS渲染定位的一个概念。</p>
+<p>BFC是页面CSS 视觉渲染的一部分，用于决定块盒子的布局及浮动相互影响范围的一个区域。</p>
+<p>BFC的一个最重要的效果是，让处于BFC内部的元素与外部的元素相互隔离，使内外元素的定位不会相互影响。</p>
+<p>利用BFC可以闭合浮动，防止与浮动元素重叠。</p>
+<p>参考《Learning BFC》</p>
+<p>1.9、线程与进程的区别<br>a. 一个程序至少有一个进程，一个进程至少有一个线程</p>
+<p>b. 线程的划分尺度小于进程，使得多线程程序的并发性高</p>
+<p>c. 进程在执行过程中拥有独立的内存单元，而多个线程共享内存，从而极大地提高了程序的运行效率</p>
+<p>d. 每个独立的线程有一个程序运行的入口、顺序执行序列和程序的出口。但是线程不能够独立执行，必须依存在应用程序中，由应用程序提供多个线程执行控制</p>
+<p>e. 多线程的意义在于一个应用程序中，有多个执行部分可以同时执行。但操作系统并没有将多个线程看做多个独立的应用，来实现进程的调度和管理以及资源分配 </p>
+<p>1.10、请说出三种减少页面加载时间的方法<br>a. 尽量减少页面中重复的HTTP请求数量</p>
+<p>b. 服务器开启gzip压缩</p>
+<p>c. css样式的定义放置在文件头部</p>
+<p>d. Javascript脚本放在文件末尾</p>
+<p>e. 压缩合并Javascript、CSS代码</p>
+<p>f. 使用多域名负载网页内的多个文件、图片</p>
+<p>参考《减低页面加载时间的方法》</p>
+<p>1.11、你都使用哪些工具来测试代码的性能？<br>JSPerf, Dromaeo</p>
+<p>1.12、你遇到过比较难的技术问题是？你是如何解决的？</p>
+<p>1.13、常使用的库有哪些？常用的前端开发工具？开发过什么应用或组件？</p>
+<p>1.14、列举IE与其他浏览器不一样的特性？<br>a. IE的排版引擎是Trident （又称为MSHTML）</p>
+<p>b. Trident内核曾经几乎与W3C标准脱节（2005年）</p>
+<p>c. Trident内核的大量 Bug等安全性问题没有得到及时解决</p>
+<p>d. JS方面，有很多独立的方法，例如绑定事件的attachEvent、创建事件的createEventObject等</p>
+<p>e. CSS方面，也有自己独有的处理方式，例如设置透明，低版本IE中使用滤镜的方式</p>
+<p>参考《Trident（排版引擎）》 </p>
+<p>1.15、什么叫优雅降级和渐进增强？<br>渐进增强 progressive enhancement：</p>
+<p>针对低版本浏览器进行构建页面，保证最基本的功能，然后再针对高级浏览器进行效果、交互等改进和追加功能达到更好的用户体验。</p>
+<p>优雅降级 graceful degradation：</p>
+<p>一开始就构建完整的功能，然后再针对低版本浏览器进行兼容。</p>
+<p>区别：</p>
+<p>a. 优雅降级是从复杂的现状开始，并试图减少用户体验的供给</p>
+<p>b. 渐进增强则是从一个非常基础的，能够起作用的版本开始，并不断扩充，以适应未来环境的需要</p>
+<p>c. 降级（功能衰减）意味着往回看；而渐进增强则意味着朝前看，同时保证其根基处于安全地带</p>
+<p>参考《优雅降级和渐进增强的区别》</p>
+<p>1.16、WEB应用从服务器主动推送Data到客户端有那些方式？<br>a. html5 websoket</p>
+<p>b. WebSocket 通过 Flash</p>
+<p>c. XHR长时间连接</p>
+<p>d. XHR Multipart Streaming</p>
+<p>e. 不可见的Iframe</p>
+<p>f. <script>标签的长时间连接(可跨域)</p>
+<p>1.17、对前端界面工程师这个职位是怎么样理解的？<br>a. 前端是最贴近用户的程序员，前端的能力就是能让产品从 90分进化到 100 分，甚至更好</p>
+<p>b. 参与项目，快速高质量完成实现效果图，精确到1px；</p>
+<p>c. 与团队成员，UI设计，产品经理的沟通；</p>
+<p>d. 做好的页面结构，页面重构和用户体验；</p>
+<p>e. 处理hack，兼容、写出优美的代码格式；</p>
+<p>f. 针对服务器的优化、拥抱最新前端技术。</p>
+<p>1.18、你在现在的团队处于什么样的角色，起到了什么明显的作用？</p>
+<p>1.19、你的优点是什么？缺点是什么？</p>
+<p>1.20、如何管理前端团队?</p>
+<p>1.21、最近在学什么？能谈谈你未来3，5年给自己的规划吗？</p>
+<p>1.22、平时如何管理你的项目？<br>a. 先期团队必须确定好全局样式（globe.css），编码模式(utf-8) 等；</p>
+<p>b. 编写习惯必须一致（例如都是采用继承式的写法，单样式都写成一行）；</p>
+<p>c. 标注样式编写人，各模块都及时标注（标注关键样式调用的地方）；</p>
+<p>d. 页面进行标注（例如 页面 模块 开始和结束）；</p>
+<p>e. CSS跟HTML 分文件夹并行存放，命名都得统一（例如style.css）；</p>
+<p>f. JS 分文件夹存放 命名以该JS功能为准的英文翻译。</p>
+<p>g. 图片采用整合的 images.png png8 格式文件使用 尽量整合在一起使用方便将来的管理 </p>
+<p>1.23、说说最近最流行的一些东西吧？常去哪些网站？<br>CSDN、SegmentFault、php.net、MDN、css参考手册、iconfont、underscore、github、Bootstrap、W3Shool、W3Cplus、caniuse</p>
+<p>1.24、Flash、Ajax各自的优缺点，在使用中如何取舍？<br>Flash：</p>
+<p>a. Flash适合处理多媒体、矢量图形、访问机器</p>
+<p>b. 对CSS、处理文本上不足，不容易被搜索</p>
+<p>Ajax：</p>
+<p>a. Ajax对CSS、文本支持很好，支持搜索</p>
+<p>b. 多媒体、矢量图形、机器访问不足</p>
+<p>共同点：</p>
+<p>a. 与服务器的无刷新传递消息</p>
+<p>b. 可以检测用户离线和在线状态</p>
+<p>c. 操作DOM</p>
+<p>1.25、请解释一下 JavaScript 的同源策略<br>同源策略指的是：协议，域名，端口相同，同源策略是一种安全协议。</p>
+<p>指一段脚本只能读取来自同一来源的窗口和文档的属性。</p>
+<p>1.26、AMD和CMD 规范的区别？<br>AMD 提前执行依赖 - 尽早执行，requireJS 是它的实现</p>
+<p>CMD 按需执行依赖 - 懒执行，seaJS 是它的实现</p>
+<p>参考《SeaJS与RequireJS最大的区别》、《与 RequireJS 的异同》</p>
+<p>1.27、网站重构的理解<br>重构：在不改变外部行为的前提下，简化结构、添加可读性，而在网站前端保持一致的行为。</p>
+<p>a. 使网站前端兼容于现代浏览器(针对于不合规范的CSS、如对IE6有效的)</p>
+<p>b. 对于移动平台的优化，针对于SEO进行优化</p>
+<p>c. 减少代码间的耦合，让代码保持弹性</p>
+<p>d. 压缩或合并JS、CSS、image等前端资源 </p>
+<p>1.28、浏览器的内核分别是什么?<br>IE浏览器的内核Trident、Mozilla的Gecko、Chrome的Blink（WebKit的分支）、Opera内核原为Presto，现为Blink；</p>
+<p>1.29、请介绍下cache-control<br>每个资源都可以通过 Cache-Control HTTP 头来定义自己的缓存策略</p>
+<p>Cache-Control 指令控制谁在什么条件下可以缓存响应以及可以缓存多久</p>
+<p>Cache-Control 头在 HTTP/1.1 规范中定义，取代了之前用来定义响应缓存策略的头（例如 Expires）。</p>
+<p>1.30、前端页面有哪三层构成，分别是什么？作用是什么？<br>a. 结构层：由 HTML 或 XHTML 之类的标记语言负责创建，仅负责语义的表达。解决了页面“内容是什么”的问题。</p>
+<p>b. 表示层：由CSS负责创建，解决了页面“如何显示内容”的问题。</p>
+<p>c. 行为层：由脚本负责。解决了页面上“内容应该如何对事件作出反应”的问题。</p>
+<p>1.31、知道的网页制作会用到的图片格式有哪些？<br>png-8，png-24，jpeg，gif，svg</p>
+<p>Webp：谷歌（google）开发的一种旨在加快图片加载速度的图片格式。图片压缩体积大约只有JPEG的2/3，并能节省大量的服务器带宽资源和数据空间。Facebook Ebay等知名网站已经开始测试并使用WebP格式。</p>
+<p>Apng：全称是“Animated Portable Network Graphics”, 是PNG的位图动画扩展，可以实现png格式的动态图片效果。04年诞生，但一直得不到各大浏览器厂商的支持，直到日前得到 iOS safari 8的支持，有望代替GIF成为下一代动态图标准。</p>
+<p>1.32、一次js请求一般情况下有哪些地方会有缓存处理？<br>a. 浏览器端存储</p>
+<p>b. 浏览器端文件缓存</p>
+<p>c. HTTP缓存304</p>
+<p>d. 服务器端文件类型缓存</p>
+<p>e. 表现层&amp;DOM缓存</p>
+<p>参考《一次HTTP请求中有哪些地方可以缓存》 </p>
+<p>1.33、一个页面上有大量的图片（大型电商网站），加载很慢，你有哪些方法优化这些图片的加载，给用户更好的体验。<br>a. 图片懒加载，滚动到相应位置才加载图片。</p>
+<p>b. 图片预加载，如果为幻灯片、相册等，将当前展示图片的前一张和后一张优先下载。</p>
+<p>c. 使用CSSsprite，SVGsprite，Iconfont、Base64等技术，如果图片为css图片的话。</p>
+<p>d. 如果图片过大，可以使用特殊编码的图片，加载时会先加载一张压缩的特别厉害的缩略图，以提高用户体验。 </p>
+<p>1.34、谈谈以前端角度出发做好SEO需要考虑什么？<br>a. 了解搜索引擎如何抓取网页和如何索引网页</p>
+<p>b. meta标签优化</p>
+<p>c. 关键词分析</p>
+<p>d. 付费给搜索引擎</p>
+<p>e. 链接交换和链接广泛度（Link Popularity）</p>
+<p>f. 合理的标签使用</p>
+<p>转自<a href="http://www.gbtags.com/gb/share/9879.htm">http://www.gbtags.com/gb/share/9879.htm</a></p>
+</script></p></div><!--文章标签--><div class="tags"><a href="/tags/前端/">前端</a><a href="/tags/javascript/">javascript</a><a href="/tags/js/">js</a><a href="/tags/面试题/">面试题</a></div><!--评论--></div></div></div><div class="pure-u-1-4"><div id="sidebar"><div class="widget"><form action="//www.baidu.com/baidu" method="get" accept-charset="utf-8" id="search" target="_blank" class="search-form"><input type="search" name="word" maxlength="20" placeholder="Search"/><input type="hidden" name="si" value="http://zhenhualiu.com"/><input name="tn" type="hidden" value="bds"/><input name="cl" type="hidden" value="3"/><input name="ct" type="hidden" value="2097152"/><input name="s" type="hidden" value="on"/></form></div><div class="widget"><div class="widget-title"> 分类</div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/css/">css</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/css/css基础/">css基础</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/css/css基础/programming/">编程</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/前端/">前端</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/react/">react</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/react/前端/">前端</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/promise/">promise</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/promise/javascript/">javascript</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/学习/">学习</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/life/">生活</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/">编程</a><span class="category-list-count">31</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/H5/">H5</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/angular/">angular</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/css/">css</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/javascript/">javascript</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/mac/">mac</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/phone/">phone</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/vue/">vue</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/vue/javacript/">javacript</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/问题/">问题</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/面试题/">面试题</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/面试题/前端/">前端</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/面试题/前端/js/">js</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/面试题/前端/js/javascript/">javascript</a><span class="category-list-count">1</span></li></ul></li></ul></li></ul></li></ul></div><div class="widget"><div class="widget-title"> 标签</div><div class="tagcloud"><a href="/tags/mac/" style="font-size: 12px;">mac</a> <a href="/tags/angular/" style="font-size: 12px;">angular</a> <a href="/tags/前端/" style="font-size: 18px;">前端</a> <a href="/tags/手机端/" style="font-size: 13px;">手机端</a> <a href="/tags/css基础/" style="font-size: 12px;">css基础</a> <a href="/tags/hexo/" style="font-size: 13px;">hexo</a> <a href="/tags/javascript/" style="font-size: 16px;">javascript</a> <a href="/tags/数组/" style="font-size: 12px;">数组</a> <a href="/tags/css3/" style="font-size: 12px;">css3</a> <a href="/tags/javacript/" style="font-size: 12px;">javacript</a> <a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/promise/" style="font-size: 12px;">promise</a> <a href="/tags/编程/" style="font-size: 13px;">编程</a> <a href="/tags/react/" style="font-size: 12px;">react</a> <a href="/tags/生活/" style="font-size: 12px;">生活</a> <a href="/tags/vue/" style="font-size: 17px;">vue</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/面试题/" style="font-size: 12px;">面试题</a> <a href="/tags/验证/" style="font-size: 12px;">验证</a> <a href="/tags/遇到的问题/" style="font-size: 12px;">遇到的问题</a> <a href="/tags/工作/" style="font-size: 12px;">工作</a></div></div><div class="widget"><div class="widget-title"> 最新文章</div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/03/15/前端面试题目收集-理论知识篇/">前端面试题目收集-理论知识篇</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/13/react-脚手架搭建/">react 脚手架搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/13/promise-相关知识/">promise 相关知识</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/12/前端不为人知的一面/">前端不为人知的一面--前端冷知识</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/02/js数组的一些题目/">js数组的一些题目</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/27/前端学习/">前端学习</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/11/vue初始项目发不到码云上的pages上可以直接访问！/">vue初始项目发布到码云上的pages上可以直接访问！</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/09/js-遇到的问题/">js-遇到的问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/28/css基础/">css基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/27/那些javascript面试题考核的知识点/">那些javascript面试题考核的知识点</a></li></ul></div><div class="widget"><div class="widget-title"> 友情链接</div><ul class="links-list"><li class="links-list-item"><a href="http://zhenhualiu.com" title="标题" target="_blank">标题</a></li></ul></div></div></div></div><div id="footer">© <a href="/." rel="nofollow">colton`s blog.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a> Theme<a target="_blank" href="https://github.com/7ye/maupassant-hexo"> Maupassant.</a></div><a id="back_to_top" href="javascript:void(0)" class="back_to_top"><span>△</span></a><script type="text/javascript" src="/js/totop.js?v=0.0.1"></script><link rel="stylesheet" href="/css/jquery.fancybox.css"><script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.1"></script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create','true','auto');ga('send','pageview');
+</script><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?true";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();
+</script><script>function auto_code_fit(){
+  if($(".highlight").length != 0){
+    var pc_width = $(".post-content").width();
+    $(".highlight .code").find("pre").width((pc_width-70)+"px");
+  }
+}
+window.onresize = function(){
+  auto_code_fit();
+}
+auto_code_fit();</script></div></body>
