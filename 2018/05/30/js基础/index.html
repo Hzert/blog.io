@@ -1,0 +1,60 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><title>js基础 - colton`s blog</title><meta name="description" content="js中的数据类型基本数据类型number , string. boolean ,null , undefined引用数据类型object: {} , [] , /^$/ , Datefunction当浏览器加载HTML页面的时候，首先会提供一个供全局JS代码执行的环境 =&amp;gt;  全局作用域（gl"><link type="text/css" rel="stylesheet" href="/css/pure.css?v=0.0.1"><link type="text/css" rel="stylesheet" href="/css/style.css?v=0.0.1"><script type="text/javascript" src="//cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script></head></html><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">js基础</h1><a id="logo" href="/.">colton`s blog</a></div><div id="nav-menu"><div class="bitcron_nav"><div class="site_nav_wrap"><div class="site_nav"><span class="a_container"><a href="/." class="selected active current">首页</a></span><span class="a_container"><a href="/archives/">归档</a></span><span class="a_container"><a href="/about/">关于</a></span><span class="a_container"><a href="/links/">订阅</a></span></div></div></div></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">js基础</h1><div class="post-meta">2018-05-30<script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" type="text/javascript"></script><span class="meta-space">  |  </span><span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span><span> 浏览</span></span></div><!--文章内容--><div class="post-content"><p>js中的数据类型</p>
+<ol>
+<li><p>基本数据类型<br>number , string. boolean ,null , undefined</p>
+</li>
+<li><p>引用数据类型<br>object: {} , [] , /^$/ , Date<br>function</p>
+<p>当浏览器加载HTML页面的时候，首先会提供一个供全局JS代码执行的环境 =&gt;  全局作用域（global/window）</p>
+</li>
+</ol>
+<p>预解释（变量提升）</p>
+<ol>
+<li>在当前的作用域中，js代码执行之前，浏览器首先会默认的把所有带var和function的进行提前的声明或者定义<br>// 声明和定义<br>// 声明：var num; =&gt;告诉浏览器在全局作用域中有一个num的变量了，如果一个变量只是声明，没有赋值，值就是undefined<br>// 定义：num = 1; =&gt;给我们的变量进行赋值</li>
+<li><p>对于带var和function关键字的在预解释的时候操作还是不一样的<br>// var =&gt; 在预解释的时候只是提前的声明<br>// function =&gt; 在预解释的时候提前的声明+定义都完成了</p>
+</li>
+<li><p>预解释只发生在当前的作用域下。例如：开始只对window下的进行预解释，只有函数执行的时候才会对函数中的进行预解释</p>
+</li>
+</ol>
+<p>js内存的分类（堆内存，栈内存）</p>
+<p>  栈内存：用来提供一个供js代码执行的环境 -&gt; 作用域（全局作用域/私有的作用域）<br>  堆内存：用来存储引用数据类型的值 -&gt; 对象存储的是属性名和属性值，函数存储的是代码字符串</p>
+<ol>
+<li><p>如何区分私有变量和全局变量<br>1）在全局作用域下声明（预解释的时候）的变量是全局变量<br>2) 在‘私有作用域中声明的变量’和函数的形参都是私有的变量</p>
+<p>在私有作用域中，我们代码执行的时候遇到一个变量，首先我们需要确定它是否为私有变量，如果是私有的变量，那么和外面的没有任何的关系，如果不是私有的，则往当前作用域的上级作用域进行查找，如果上级作用域也没有则继续查找，一直找到window为止（作用域链）</p>
+</li>
+<li><p>当函数执行的时候（直接目的：让函数体中的代码执行），首先会形成一个新的私有的作用域，然后按照如下的步骤执行：<br>1.如果有形参，先给形参赋值<br>2.进行私有作用域中的预解释<br>3.私有作用域中的代码从上到下执行</p>
+</li>
+</ol>
+<p>  函数形成一个新的私有的作用域保护了里面的私有变量不受外界的干扰（外面修改不了私有的，私有的也修改不了外面的）–&gt; 闭包</p>
+<ol>
+<li>如何查找上级作用域<br>看当前函数是在哪个作用域下定义的，那么它的上级作用域就是谁-&gt;和函数在哪执行的没有任何的关系</li>
+</ol>
+<ol>
+<li><p>关于内存释放和作用域销毁<br>堆内存<br> 对象数据类型或者函数数据类型在定义的时候首先都会开辟一个堆内存，堆内存有一个引用的地址，如果外面有变量等知道了这个地址，我们就说这个堆内存被占用了，就不能销毁了</p>
+<p> 我们想要让堆内存释放/销毁，只需要把所有引用的变量赋值为null即可，如果当前的堆内存没有任何东西被占用，那么浏览器会在闲置的时候把它销毁</p>
+<p>栈内存<br> 全局作用域（只有当页面关闭的时候全局作用域才会销毁）<br> 私有作用域（只有函数执行会产生私有的作用域）</p>
+<p> 一般情况下，函数执行会形成一个新的私有作用域，当私有作用域中的代码执行完成后，我们当前作用域都会主动的进行释放和销毁</p>
+<p> 当前私有作用域中的部分内存被作用域以外的东西占用了，那么当前的这个作用域就不能销毁了</p>
+<p> a. 函数执行返回了一个引用数据类型的值，并且在函数外面被一个其他的东西给接收了，这种情况下一般形成的私有作用域都不会被销毁</p>
+</li>
+</ol>
+</div><!--文章标签--><div class="tags"><a href="/tags/javascript/">javascript</a></div><!--评论--></div></div></div><div class="pure-u-1-4"><div id="sidebar"><div class="widget"><form action="//www.baidu.com/baidu" method="get" accept-charset="utf-8" id="search" target="_blank" class="search-form"><input type="search" name="word" maxlength="20" placeholder="Search"/><input type="hidden" name="si" value="http://zhenhualiu.com"/><input name="tn" type="hidden" value="bds"/><input name="cl" type="hidden" value="3"/><input name="ct" type="hidden" value="2097152"/><input name="s" type="hidden" value="on"/></form></div><div class="widget"><div class="widget-title"> 分类</div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/angular/">angular</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/css/">css</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/h5/">h5</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><span class="category-list-count">21</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/vue/">vue</a><span class="category-list-count">11</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端面试题/">前端面试题</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/life/">生活</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/programming/">编程</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/programming/mac/">mac</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/表单验证/">表单验证</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/遇到的问题/">遇到的问题</a><span class="category-list-count">2</span></li></ul></div><div class="widget"><div class="widget-title"> 标签</div><div class="tagcloud"><a href="/tags/promise/" style="font-size: 12px;">promise</a> <a href="/tags/angular/" style="font-size: 13px;">angular</a> <a href="/tags/前端/" style="font-size: 18px;">前端</a> <a href="/tags/css3/" style="font-size: 13px;">css3</a> <a href="/tags/手机端/" style="font-size: 13px;">手机端</a> <a href="/tags/hexo/" style="font-size: 13px;">hexo</a> <a href="/tags/数组/" style="font-size: 12px;">数组</a> <a href="/tags/javascript/" style="font-size: 17px;">javascript</a> <a href="/tags/jsonp/" style="font-size: 12px;">jsonp</a> <a href="/tags/mac/" style="font-size: 12px;">mac</a> <a href="/tags/编程/" style="font-size: 12px;">编程</a> <a href="/tags/css/" style="font-size: 15px;">css</a> <a href="/tags/react/" style="font-size: 12px;">react</a> <a href="/tags/生活/" style="font-size: 12px;">生活</a> <a href="/tags/vue/" style="font-size: 16px;">vue</a> <a href="/tags/js/" style="font-size: 14px;">js</a> <a href="/tags/面试题/" style="font-size: 12px;">面试题</a> <a href="/tags/工作/" style="font-size: 12px;">工作</a> <a href="/tags/验证/" style="font-size: 12px;">验证</a> <a href="/tags/遇到的问题/" style="font-size: 12px;">遇到的问题</a> <a href="/tags/前端面试题/" style="font-size: 12px;">前端面试题</a> <a href="/tags/H5/" style="font-size: 12px;">H5</a></div></div><div class="widget"><div class="widget-title"> 最新文章</div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/05/30/js技巧/">js技巧</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/30/js基础/">js基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/09/前端面试题-1/">前端面试题-2</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/04/vue-双向数据绑定原生js实现/">vue-双向数据绑定原生js实现</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/04/js面试题/">js面试题</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/27/vue-面试题/">vue-面试题</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/26/angular-2/">angular-2</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/26/css3/">css3</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/25/jsonP跨域做法-面试时的漏洞/">jsonP跨域做法-面试时的漏洞</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/17/javascript面向对象/">javascript面向对象</a></li></ul></div><div class="widget"><div class="widget-title"> 友情链接</div><ul class="links-list"><li class="links-list-item"><a href="http://zhenhualiu.com" title="标题" target="_blank">标题</a></li></ul></div></div></div></div><div id="footer">© <a href="/." rel="nofollow">colton`s blog.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a> Theme<a target="_blank" href="https://github.com/7ye/maupassant-hexo"> Maupassant.</a></div><a id="back_to_top" href="javascript:void(0)" class="back_to_top"><span>△</span></a><script type="text/javascript" src="/js/totop.js?v=0.0.1"></script><link rel="stylesheet" href="/css/jquery.fancybox.css"><script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.1"></script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create','true','auto');ga('send','pageview');
+</script><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?true";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();
+</script><script>function auto_code_fit(){
+  if($(".highlight").length != 0){
+    var pc_width = $(".post-content").width();
+    $(".highlight .code").find("pre").width((pc_width-70)+"px");
+  }
+}
+window.onresize = function(){
+  auto_code_fit();
+}
+auto_code_fit();</script></div></body>
